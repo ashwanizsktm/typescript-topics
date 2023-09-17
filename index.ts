@@ -405,3 +405,33 @@ class Teacher extends Student {
 const teacher: Teacher = new Teacher('Mohan', 45, 500, 13);
 console.log(teacher);
 */
+
+// Enums :- it used for types and assignin values also. it is recommended to use enum properties in the upeercase letters
+
+/*
+enum StatusEnum {
+  NOT_STARTED = '[STATUS] Not started',
+  IN_PROGRESS = '[STATUS] In Progress',
+  DONE = '[STATUS] Done',
+}
+
+// as you can see it's a simple object where we can access the values..
+
+console.log(StatusEnum.NOT_STARTED);
+
+
+// it can we used with interfaces
+
+interface Task {
+  id: number;
+  status: StatusEnum;
+}
+
+// finally we can access the values also.
+const task: Task = {
+  id: 23,
+  status: StatusEnum.DONE,
+};
+
+console.log(task);
+*/
