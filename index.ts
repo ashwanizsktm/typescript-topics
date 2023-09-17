@@ -8,10 +8,7 @@ const age:number = 25;
 const isMarried:boolean = false;
 const haveVoted:null = null;
 
-const namesArr:string[] = ['ashwani', 'jame']  //any datatype can't be assigned under this as it is array with string
-//this can be written as 
-const nameArr1:Array<string> = ['Rahul', 'Raghav', false]; 
-// type boolean can't be instted inside this.
+const namesArr:string[] = ['ashwani', 'jame']  //array of strings
 
 const obj:object = {
   name: 'As',
@@ -19,7 +16,7 @@ const obj:object = {
 }
 
 // types with function
-// with fn we can pass the args types and return types as well
+// with fn we pass the args types and return types.
 
 const getFullName = (fname:string, lname:string):string => {
     return fname + ' ' + lname;
@@ -185,7 +182,7 @@ if we try to assign anything in the someProps except undefined & null it'll thro
 // In above 2 statement we won't get any error.
 
 /*
- any is the worst type in typescript it does't let you what type of data is going to be.
+ any is the worst type in typescript it does't let know you what type of data is going to be.
 */
 
 // it can only be usefull in such a case where we no idea at all what type
@@ -435,3 +432,127 @@ const task: Task = {
 
 console.log(task);
 */
+
+// generics typescript.
+
+/*
+ * Generics gives a lot of opportuinity to implement in the javascript.
+ */
+
+// the <T> is a generic we can whatever we want inside <type> , <ksjdkdf>, but
+// as a convention we write <T> if we hover on the function call then we see the
+// types which we are passing inside the function args
+
+/*
+const addId = <T>(obj: T) => {
+  const id = Math.random().toString(20);
+  return {
+    ...obj,
+    id,
+  };
+};
+
+interface UserInterface {
+  name: string;
+}
+
+const user: UserInterface = {
+  name: 'Ashwani',
+};
+*/
+// const result = addId<UserInterface>(user);
+// there is an isue with this line user can pass data like this as well see below
+
+// const result = addId<string>('Fooooo');
+
+// but our function only excepts the arguments to be an object so in that case code will break so we can refactor the code.
+
+/*
+const addId = <T extends object>(obj: T) => {
+  const id = Math.random().toString(20);
+  return {
+    ...obj,
+    id,
+  };
+};
+
+interface UserInterface {
+  name: string;
+}
+
+const user: UserInterface = {
+  name: 'Ashwani',
+};
+
+const result = addId<UserInterface>(user); // good
+
+// const result1 = addId<string>('Fooooo');
+// error Type 'string' does not satisfy the constraint 'object'.(2344)
+*/
+
+// ======= generics with interfaces ====== with same example
+/*
+const addId = <T extends object>(obj: T) => {
+  const id = Math.random().toString(20);
+  return {
+    ...obj,
+    id,
+  };
+};
+
+interface UserInterface<T> {
+  name: string;
+  data: T;
+}
+
+const user: UserInterface<{ meta: string }> = {
+  name: 'Ashwani',
+  data: {
+    meta: 'meta',
+  },
+};
+
+const user1: UserInterface<string[]> = {
+  name: 'Ramesh',
+  data: ['typescript', 'Javascript'],
+};
+
+const result = addId<UserInterface<object>>(user);
+console.log(result);
+const result1 = addId<UserInterface<string[]>>(user1);
+console.log(result1);
+*/
+// now this is super flexible bcz now we don't need to add extra interface
+// inside the interface and do the nesting of interfaces.
+
+// generics with passing various datatypes
+
+// let's just consider the previous example
+/*
+const addId = <T extends object>(obj: T) => {
+  const id = Math.random().toString(20);
+  return {
+    ...obj,
+    id,
+  };
+};
+
+interface UserInterface<T, V> {
+  name: string;
+  data: T;
+  meta: V;
+}
+
+const user: UserInterface<number, string> = {
+  name: 'Ashwani',
+  data: 25,
+  meta: 'Meta informations',
+};
+
+const result = addId<UserInterface<number, string>>(user);
+console.log(result);
+*/
+
+// as we can see we can pass various data type and the way we call super useful and great.
+
+/**======== Happy coading ============= */
