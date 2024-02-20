@@ -2,28 +2,30 @@
 
 // types
 
-/*
-const name:string = 'Ashwani';
-const age:number = 25;
-const isMarried:boolean = false;
-const haveVoted:null = null;
+const myName: string = 'Ashwani';
+const age: number = 25;
+const isMarried: boolean = false;
+const haveVoted: null = null;
 
-const namesArr:string[] = ['ashwani', 'jame']  //array of strings
+const boolArray: boolean[] = [true, true, false, true];
 
-const obj:object = {
+let miscArr: any[] = [3, true, 'jkddsfsd', null, undefined];
+
+const namesArr: string[] = ['ashwani', 'jame']; //array of strings
+
+const obj: object = {
   name: 'As',
-  age: 25
-}
+  age: 25,
+};
 
 // types with function
 // with fn we pass the args types and return types.
-
-const getFullName = (fname:string, lname:string):string => {
-    return fname + ' ' + lname;
+/*
+function getFullName(fname: string, lname: string): string {
+  return fname + ' ' + lname;
 }
 console.log(getFullName('ashwani', 'kumar'));
 */
-
 // Interfaces:- with interface we can actully give strict tying by giving
 // types to the user props.
 /*
@@ -32,6 +34,16 @@ interface UserInterface {
   age?: number;
   getMessage(): string;
 }
+
+interface myDataInterface {
+  id: string;
+  text: string;
+  title: string;
+}
+
+const muData: myDataInterface[] = [
+  { id: 'fdf', title: 'dfdfdf', text: 'sdsdsdsd' },
+];
 */
 
 // now age props in User interface is optional so we can either put in or not.
@@ -65,8 +77,7 @@ type Airplane = {
 /*
 Index signatures can be used when you are unsure of how many properties an object will have but you are sure of the type of properties of an object.
 */
-
-/*
+/*/
 type Seat = {
   [key: string]: string;
 };
@@ -106,8 +117,8 @@ const airplane: Airplane = {
   ],
 };
 console.log(airplane);
-
 */
+
 /**
  * see this for more details
  * https://hackernoon.com/assign-types-to-nested-objects-in-typescript
@@ -115,7 +126,7 @@ console.log(airplane);
 
 // union
 
-//  const Number: string | number = 23;
+const number: string | number = 23;
 
 // we can either put any of the type here
 /*
@@ -137,8 +148,8 @@ const SomeProps: string | null | object | string[] | undefined = null;
 type FRAMEWORKS = string[];
 
 interface UserInterface {
-  frameworks: FRAMEWORKS;
   name: string;
+  frameworks: FRAMEWORKS;
 }
 
 const user: UserInterface = {
@@ -170,13 +181,17 @@ getMessage('Ashwani', 'kumar');
 */
 
 // void means undefined or null. let's see that in action with proof.
+
+// if we try to assign anything in the someProps except undefined & null it'll throw an error.
+
 /*
-if we try to assign anything in the someProps except undefined & null it'll throw an error.
-*/
-// let someProps: void = 'sdsd';
-/*
-  let someProps: void = null;
-  let someProps1: void = undefined;
+
+let someProps: void = 'sdsd';
+
+let someProps1: void = null;
+
+let someProps2: void = undefined;
+
 */
 
 // In above 2 statement we won't get any error.
@@ -185,17 +200,16 @@ if we try to assign anything in the someProps except undefined & null it'll thro
  any is the worst type in typescript it does't let know you what type of data is going to be.
 */
 
-// it can only be usefull in such a case where we no idea at all what type
+// it can only be usefull in such a case where we've no idea at all what type
 
-// const someProps: any = 'hello';
+// const someProperty: any = 'hello';
 
 // in the some props we can assing the value of any type, string, number, boolean array object and whatever can be.
 
 // never
-/*
- this mean that the something will never happen it is used in the such cases
- as you see from the example.
- */
+
+//  this mean that  something will never happen it is used in the such cases
+//  as you see from the example.
 
 /*
   const doSomeThing = ():never => {
@@ -212,7 +226,6 @@ const someProps: unknown = 24;
 // let's see the other example to see the difference between any and unknown.
 
 /*
-
 let vAny: any = 10;
 let vUnknown: unknown = 10;
 
@@ -222,11 +235,10 @@ console.log(s1);
 
 console.log(vAny.foo()) // it'll not throw an error
 console.log(vUnknown.foo()) // Property 'foo' does not exist on type 'unknown'.(2339)
-
 */
 
 // Type Assertion/typecasting : it actually means converting one data type to other
-/*
+
 let vUnknown: unknown = 10;
 
 // let s2: number = vUnknown;
@@ -234,14 +246,12 @@ let vUnknown: unknown = 10;
 // error Type 'unknown' is not assignable to type 'number'.(2322)
 // so to fix this we use type Assertion
 
-let s2: number = vUnknown as number;
-
-console.log(s2);
-*/
+// let s2: number = vUnknown as number;
+// console.log(s2);
 
 // lets see a another useful case
 
-//let pageNumber: string = '10';
+let pageNumber: string = '10';
 
 //let pageNumericNumber: number = pageNumber as number;
 
@@ -252,10 +262,8 @@ console.log(s2);
 
 // so the above line cnn be written as something like this.
 
-/*
-let pageNumericNumber: number = pageNumber as unknown as number;
-console.log(pageNumericNumber);
-*/
+// let pageNumericNumber: number = pageNumber as unknown as number;
+// console.log(pageNumericNumber);
 
 // typescript with DOM here the typeassertion/ typecasting plays an important role.
 // typescript doesn't know anything about our markup
@@ -414,8 +422,7 @@ enum StatusEnum {
 
 // as you can see it's a simple object where we can access the values..
 
-console.log(StatusEnum.NOT_STARTED);
-
+console.log(StatusEnum.DONE);
 
 // it can we used with interfaces
 
@@ -528,7 +535,7 @@ console.log(result1);
 // generics with passing various datatypes
 
 // let's just consider the previous example
-/*
+
 const addId = <T extends object>(obj: T) => {
   const id = Math.random().toString(20);
   return {
@@ -551,7 +558,6 @@ const user: UserInterface<number, string> = {
 
 const result = addId<UserInterface<number, string>>(user);
 console.log(result);
-*/
 
 // as we can see we can pass various data type and the way we call super useful and great.
 
