@@ -310,12 +310,12 @@ class User {
   }
 }
 
-  const user: User = new User('Ashwani', 'Kumar');
+const user: User = new User('Ashwani', 'Kumar');
 
-  console.log(user);
-  console.log(user.getFullName());
-
+console.log(user);
+console.log(user.getFullName());
 */
+
 // console.log(user.firstName)
 //Property 'firstName' is private and only accessible within class 'User'
 
@@ -327,11 +327,10 @@ class User {
 
 // classes with interfaces
 
+// interface UserInterface {
+//   getFullName(): string;
+// }
 /*
-interface UserInterface {
-  getFullName(): string;
-}
-
 class User implements UserInterface {
   firstName: string;
   lastname: string;
@@ -348,7 +347,7 @@ class User implements UserInterface {
   }
 }
 
-// console.log(User.maxAge);
+console.log(User.maxAge);
 
 // let's inherit the user class
 class Admin extends User {
@@ -410,7 +409,6 @@ class Teacher extends Student {
 const teacher: Teacher = new Teacher('Mohan', 45, 500, 13);
 console.log(teacher);
 */
-
 // Enums :- it used for types and assignin values also. it is recommended to use enum properties in the upeercase letters
 
 /*
@@ -446,10 +444,9 @@ console.log(task);
  * Generics gives a lot of opportuinity to implement in the javascript.
  */
 
-// the <T> is a generic we can whatever we want inside <type> , <ksjdkdf>, but
+// the <T> is a generic we can write whatever we want inside <type> , <ksjdkdf>, but
 // as a convention we write <T> if we hover on the function call then we see the
 // types which we are passing inside the function args
-
 /*
 const addId = <T>(obj: T) => {
   const id = Math.random().toString(20);
@@ -466,14 +463,14 @@ interface UserInterface {
 const user: UserInterface = {
   name: 'Ashwani',
 };
-*/
+
 // const result = addId<UserInterface>(user);
-// there is an isue with this line user can pass data like this as well see below
 
-// const result = addId<string>('Fooooo');
+// there is an issue with this line user can pass data like this as well see below
 
+const result = addId<string>('Fooooo');
+*/
 // but our function only excepts the arguments to be an object so in that case code will break so we can refactor the code.
-
 /*
 const addId = <T extends object>(obj: T) => {
   const id = Math.random().toString(20);
@@ -535,7 +532,7 @@ console.log(result1);
 // generics with passing various datatypes
 
 // let's just consider the previous example
-
+/*
 const addId = <T extends object>(obj: T) => {
   const id = Math.random().toString(20);
   return {
@@ -558,6 +555,7 @@ const user: UserInterface<number, string> = {
 
 const result = addId<UserInterface<number, string>>(user);
 console.log(result);
+*/
 
 // as we can see we can pass various data type and the way we call super useful and great.
 
